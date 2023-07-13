@@ -13,5 +13,7 @@ public interface UserService {
 	boolean checkUserPass(Users user) throws Exception;
 	
 	boolean checkUser(Users user) throws Exception;
+	
+	boolean userExists(String userName) throws Exception;
 
 }

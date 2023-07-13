@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.demo.models.Users;
 import com.example.demo.repository.UserRepository;
 
+
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -18,7 +19,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public boolean addUser(Users user) throws Exception {
-		if(checkUser(user) == true) {
+		if(repo.existsById(user.getUsername())) {
 			return false;
 		}
 		repo.save(user);
@@ -52,6 +53,11 @@ public class UserServiceImpl implements UserService {
 		Optional<Users> optional = repo.findByUsername(user.getUsername());
 		Users returnedUsers = optional.orElseThrow( ()-> new Exception("Username/password is incorrect"));
 		return returnedUsers == user;
+	}
+
+	@Override
+	public boolean userExists(String userName) throws Exception {
+		return false;
 	}
 
 }
