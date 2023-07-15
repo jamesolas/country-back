@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 	public Users getUser(Users user) throws Exception {
 		Optional<Users> optional = repo.findByUsernameAndPassword(user.getUsername(), user.getPassword());
 		Users returnedUser = optional.orElseThrow( ()-> new Exception("Username/password is incorrect.") );
-		if(returnedUser == user) {
+		if(returnedUser.getUsername().equals(returnedUser.getUsername()) && returnedUser.getPassword().equals(user.getPassword())) {
 			return returnedUser;
 		}
 		return null;

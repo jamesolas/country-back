@@ -20,7 +20,7 @@ public class UserController {
 	@Autowired
 	UserService service;
 	
-	@GetMapping("getUser")
+	@PostMapping("getUser")
 	public ResponseEntity<Users> getUser(@RequestBody Users user) throws Exception{
 		return ResponseEntity.ok(service.getUser(user) );
 	}
